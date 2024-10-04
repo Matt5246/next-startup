@@ -1,11 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
 
-
 export const makeStore = () => {
-    return configureStore({
-        reducer: {
-        }
-    })
+  return configureStore({
+    reducer: {},
+  })
 }
 
 export type AppStore = ReturnType<typeof makeStore>
