@@ -1,8 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
+import counterSlice from './features/counter/counter.slice'
 
 export const makeStore = () => {
   return configureStore({
-    reducer: {},
+    reducer: {
+      counter: counterSlice,
+    },
+    devTools: process.env.NODE_ENV !== 'production',
   })
 }
 

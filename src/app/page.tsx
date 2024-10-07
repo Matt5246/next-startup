@@ -5,10 +5,15 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Moon, Sun, GitFork, Book, Users, Rocket, Star, Code } from "lucide-react"
 import { useTheme } from "next-themes"
+import { useAppDispatch, useAppSelector } from "@/lib/hooks"
+import { decrement, increment, selectCounter } from "@/lib/features/counter/counter.slice"
 
 export default function Home() {
   const [mounted, setMounted] = useState(false)
-  const { theme, setTheme } = useTheme();
+  const { theme, setTheme } = useTheme()
+
+  const counter = useAppSelector(selectCounter)
+  const dispatch = useAppDispatch()
 
   useEffect(() => {
     setMounted(true)
@@ -45,6 +50,19 @@ export default function Home() {
                 <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
                   Your journey to building amazing applications starts here. Let's explore what's next!
                 </p>
+              </div>
+              <div className="flex flex-col items-center space-y-2">
+                <div className="text-2xl font-semibold">
+                  {counter}
+                </div>
+                <div className="flex space-x-4">
+                  <button className="px-4 py-2 bg-gray-300" onClick={() => dispatch(increment())}>
+                    +
+                  </button>
+                  <button className="px-4 py-2 bg-gray-300" onClick={() => dispatch(decrement())}>
+                    -
+                  </button>
+                </div>
               </div>
             </div>
           </div>
